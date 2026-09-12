@@ -1,0 +1,50 @@
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: sans-serif; background: #f5f6f8; }
+
+.layout { display: flex; min-height: 100vh; }
+
+.sidebar {
+  width: 240px;
+  background: #1a2332;
+  color: white;
+  padding: 20px;
+}
+.brand { display: flex; gap: 10px; margin-bottom: 30px; }
+.brand-icon { font-size: 28px; }
+.brand-title { font-size: 13px; font-weight: bold; }
+.brand-sub { font-size: 11px; color: #9aa5b1; }
+.nav-item {
+  display: block;
+  padding: 10px 12px;
+  border-radius: 6px;
+  color: #c9d1d9;
+  text-decoration: none;
+  margin-bottom: 4px;
+  cursor: pointer;
+  font-size: 14px;
+}
+.nav-item.active { background: #e8651a; color: white; }
+
+.content { flex: 1; padding: 24px; }
+
+.topbar { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
+.topbar-right { display: flex; gap: 16px; align-items: center; }
+
+.stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-bottom: 24px; }
+.stat-card { background: white; border-radius: 10px; padding: 16px; box-shadow: 0 1px 3px rgba(0,0,0,0.08); }
+.stat-label { font-size: 13px; color: #666; }
+.stat-value { font-size: 28px; font-weight: bold; margin: 4px 0; }
+.stat-sub { font-size: 12px; color: #888; }
+
+.machines-section h2 { margin-bottom: 12px; font-size: 18px; }
+.machines-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; }
+.machine-card { background: white; border-radius: 10px; padding: 16px; box-shadow: 0 1px 3px rgba(0,0,0,0.08); }
+.machine-header { display: flex; justify-content: space-between; align-items: center; }
+.machine-name { font-weight: bold; font-size: 14px; }
+.machine-location { font-size: 12px; color: #888; margin: 4px 0 10px; }
+.machine-stats { display: flex; gap: 16px; font-size: 13px; margin-bottom: 8px; }
+.machine-update { font-size: 11px; color: #aaa; }
+
+.badge { font-size: 11px; padding: 3px 10px; border-radius: 12px; }
+.badge.online { background: #e3f5e9; color: #0f9d58; }
+.badge.offline { background: #fbe6e6; color: #e24b4a; }

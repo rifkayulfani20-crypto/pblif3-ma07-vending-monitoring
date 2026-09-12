@@ -1,0 +1,34 @@
+{
+  "mesin": [
+    {
+      "id": 1,
+      "nama": "Mesin 1 - Ayam Geprek",
+      "lokasi": "Lobby Gedung A",
+      "suhu": 72,
+      "stok": 12,
+      "status": "online",
+      "kondisi": "normal",
+      "update": "10:23 WIB"
+    },
+    {
+      "id": 2,
+      "nama": "Mesin 2 - Nasi Goreng",
+      "lokasi": "Gedung B",
+      "suhu": 68,
+      "stok": 8,
+      "status": "online",
+      "kondisi": "normal",
+      "update": "10:20 WIB"
+    },
+    {
+      "id": 3,
+      "nama": "Mesin 3 - Mie Instan",
+      "lokasi": "Gedung C",
+      "suhu": 92,
+      "stok": 4,
+      "status": "offline",
+      "kondisi": "suhu tinggi",
+      "update": "09:50 WIB"
+    }
+  ]
+}
