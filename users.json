@@ -1,0 +1,22 @@
+{
+  "users": [
+    {
+      "username": "rifka",
+      "password": "$2b$10$ICWeU7veq23LT6YdiMAtS.YhJkkSl92211L9g/stMLCXiXRrguZHu",
+      "nama": "Rifka",
+      "role": "pengelola"
+    },
+    {
+      "username": "budi",
+      "password": "$2b$10$hJyZTfq5BawEJeYoP16MdOKDk.ScpDZ5jxjLZBna4MoV9TlSHB8Ry",
+      "nama": "Budi",
+      "role": "pengelola"
+    },
+    {
+      "username": "andi",
+      "password": "$2b$10$7z.QlJVFdxImRvnIA5HPNenaF.JINM4Ww.e/eeh7YWuGBMCxmfpEy",
+      "nama": "Andi",
+      "role": "pengelola"
+    }
+  ]
+}

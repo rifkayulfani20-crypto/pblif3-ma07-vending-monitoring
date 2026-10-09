@@ -1,0 +1,11 @@
+{
+  "log": [
+    { "jam": "00:00", "mesin1": 68, "mesin2": 62, "mesin3": 85 },
+    { "jam": "04:00", "mesin1": 65, "mesin2": 60, "mesin3": 88 },
+    { "jam": "08:00", "mesin1": 70, "mesin2": 66, "mesin3": 90 },
+    { "jam": "12:00", "mesin1": 74, "mesin2": 70, "mesin3": 95 },
+    { "jam": "16:00", "mesin1": 72, "mesin2": 68, "mesin3": 92 },
+    { "jam": "20:00", "mesin1": 69, "mesin2": 65, "mesin3": 89 },
+    { "jam": "23:59", "mesin1": 72, "mesin2": 68, "mesin3": 92 }
+  ]
+}

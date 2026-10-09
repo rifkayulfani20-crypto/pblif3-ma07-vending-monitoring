@@ -1,0 +1,7 @@
+{
+  "produk": [
+    { "id": 1, "nama": "Ayam Geprek", "kategori": "Makanan Berat", "harga": 15000 },
+    { "id": 2, "nama": "Nasi Goreng", "kategori": "Makanan Berat", "harga": 18000 },
+    { "id": 3, "nama": "Mie Instan", "kategori": "Makanan Ringan", "harga": 10000 }
+  ]
+}
