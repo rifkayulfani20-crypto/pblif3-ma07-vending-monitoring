@@ -1,0 +1,1222 @@
+{
+    "info": {
+        "name": "My Collection",
+        "description": "",
+        "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+    },
+    "item": [
+        {
+            "name": "8. Get All Orders",
+            "description": "",
+            "event": [],
+            "auth": {},
+            "request": {
+                "auth": {},
+                "method": "GET",
+                "body": {
+                    "mode": "raw",
+                    "raw": "{\r\n  \"status\": \"completed\"\r\n}",
+                    "options": {
+                        "raw": {
+                            "language": "json"
+                        }
+                    }
+                },
+                "header": [],
+                "url": {
+                    "raw": "http://127.0.0.1:8000/api/v1/orders",
+                    "path": [
+                        "api",
+                        "v1",
+                        "orders"
+                    ],
+                    "host": [
+                        "127",
+                        "0",
+                        "0",
+                        "1"
+                    ],
+                    "protocol": "http",
+                    "port": "8000",
+                    "query": [],
+                    "variable": []
+                }
+            },
+            "response": [],
+            "protocolProfileBehavior": {
+                "strictSSL": false,
+                "followRedirects": true
+            }
+        },
+        {
+            "name": "9. Daily Transaction Report",
+            "description": "",
+            "event": [],
+            "auth": {},
+            "request": {
+                "auth": {},
+                "method": "GET",
+                "body": {},
+                "header": [],
+                "url": {
+                    "raw": "http://127.0.0.1:8000/api/v1/reports/daily",
+                    "path": [
+                        "api",
+                        "v1",
+                        "reports",
+                        "daily"
+                    ],
+                    "host": [
+                        "127",
+                        "0",
+                        "0",
+                        "1"
+                    ],
+                    "protocol": "http",
+                    "port": "8000",
+                    "query": [],
+                    "variable": []
+                }
+            },
+            "response": [],
+            "protocolProfileBehavior": {
+                "strictSSL": false,
+                "followRedirects": true
+            }
+        },
+        {
+            "name": "10. Daftar Mesin Vending",
+            "description": "",
+            "event": [],
+            "auth": {},
+            "request": {
+                "auth": {},
+                "method": "GET",
+                "body": {},
+                "header": [],
+                "url": {
+                    "raw": "http://127.0.0.1:8000/api/machines",
+                    "path": [
+                        "api",
+                        "machines"
+                    ],
+                    "host": [
+                        "127",
+                        "0",
+                        "0",
+                        "1"
+                    ],
+                    "protocol": "http",
+                    "port": "8000",
+                    "query": [],
+                    "variable": []
+                }
+            },
+            "response": [],
+            "protocolProfileBehavior": {
+                "strictSSL": false,
+                "followRedirects": true
+            }
+        },
+        {
+            "name": "11. Get Machine Monitoring",
+            "description": "",
+            "event": [],
+            "auth": {},
+            "request": {
+                "auth": {},
+                "method": "GET",
+                "body": {},
+                "header": [],
+                "url": {
+                    "raw": "http://127.0.0.1:8000/api/machines/1/monitoring",
+                    "path": [
+                        "api",
+                        "machines",
+                        "1",
+                        "monitoring"
+                    ],
+                    "host": [
+                        "127",
+                        "0",
+                        "0",
+                        "1"
+                    ],
+                    "protocol": "http",
+                    "port": "8000",
+                    "query": [],
+                    "variable": []
+                }
+            },
+            "response": [],
+            "protocolProfileBehavior": {
+                "strictSSL": false,
+                "followRedirects": true
+            }
+        },
+        {
+            "name": "12. Get Machine 2 Monitoring",
+            "description": "",
+            "event": [],
+            "auth": {},
+            "request": {
+                "auth": {},
+                "method": "GET",
+                "body": {},
+                "header": [],
+                "url": {
+                    "raw": "http://127.0.0.1:8000/api/machines/2/monitoring",
+                    "path": [
+                        "api",
+                        "machines",
+                        "2",
+                        "monitoring"
+                    ],
+                    "host": [
+                        "127",
+                        "0",
+                        "0",
+                        "1"
+                    ],
+                    "protocol": "http",
+                    "port": "8000",
+                    "query": [],
+                    "variable": []
+                }
+            },
+            "response": [],
+            "protocolProfileBehavior": {
+                "strictSSL": false,
+                "followRedirects": true
+            }
+        },
+        {
+            "name": "13. Get Latest Telemetry",
+            "description": "",
+            "event": [],
+            "auth": {},
+            "request": {
+                "auth": {},
+                "method": "GET",
+                "body": {},
+                "header": [],
+                "url": {
+                    "raw": "http://127.0.0.1:8000/api/telemetry/latest/1",
+                    "path": [
+                        "api",
+                        "telemetry",
+                        "latest",
+                        "1"
+                    ],
+                    "host": [
+                        "127",
+                        "0",
+                        "0",
+                        "1"
+                    ],
+                    "protocol": "http",
+                    "port": "8000",
+                    "query": [],
+                    "variable": []
+                }
+            },
+            "response": [],
+            "protocolProfileBehavior": {
+                "strictSSL": false,
+                "followRedirects": true
+            }
+        },
+        {
+            "name": "14. Get All Telemetry",
+            "description": "",
+            "event": [],
+            "auth": {},
+            "request": {
+                "auth": {},
+                "method": "GET",
+                "body": {},
+                "header": [],
+                "url": {
+                    "raw": "http://127.0.0.1:8000/api/telemetry",
+                    "path": [
+                        "api",
+                        "telemetry"
+                    ],
+                    "host": [
+                        "127",
+                        "0",
+                        "0",
+                        "1"
+                    ],
+                    "protocol": "http",
+                    "port": "8000",
+                    "query": [],
+                    "variable": []
+                }
+            },
+            "response": [],
+            "protocolProfileBehavior": {
+                "strictSSL": false,
+                "followRedirects": true
+            }
+        },
+        {
+            "name": "15. Get Machine Detail",
+            "description": "",
+            "event": [],
+            "auth": {},
+            "request": {
+                "auth": {},
+                "method": "GET",
+                "body": {},
+                "header": [],
+                "url": {
+                    "raw": "http://127.0.0.1:8000/api/machines/1",
+                    "path": [
+                        "api",
+                        "machines",
+                        "1"
+                    ],
+                    "host": [
+                        "127",
+                        "0",
+                        "0",
+                        "1"
+                    ],
+                    "protocol": "http",
+                    "port": "8000",
+                    "query": [],
+                    "variable": []
+                }
+            },
+            "response": [],
+            "protocolProfileBehavior": {
+                "strictSSL": false,
+                "followRedirects": true
+            }
+        },
+        {
+            "name": "16. Get All Products",
+            "description": "",
+            "event": [],
+            "auth": {},
+            "request": {
+                "auth": {},
+                "method": "GET",
+                "body": {},
+                "header": [],
+                "url": {
+                    "raw": "http://127.0.0.1:8000/api/products",
+                    "path": [
+                        "api",
+                        "products"
+                    ],
+                    "host": [
+                        "127",
+                        "0",
+                        "0",
+                        "1"
+                    ],
+                    "protocol": "http",
+                    "port": "8000",
+                    "query": [],
+                    "variable": []
+                }
+            },
+            "response": [],
+            "protocolProfileBehavior": {
+                "strictSSL": false,
+                "followRedirects": true
+            }
+        },
+        {
+            "name": "17. Get Daily Report",
+            "description": "",
+            "event": [],
+            "auth": {},
+            "request": {
+                "auth": {},
+                "method": "GET",
+                "body": {},
+                "header": [],
+                "url": {
+                    "raw": "http://127.0.0.1:8000/api/v1/reports/daily",
+                    "path": [
+                        "api",
+                        "v1",
+                        "reports",
+                        "daily"
+                    ],
+                    "host": [
+                        "127",
+                        "0",
+                        "0",
+                        "1"
+                    ],
+                    "protocol": "http",
+                    "port": "8000",
+                    "query": [],
+                    "variable": []
+                }
+            },
+            "response": [],
+            "protocolProfileBehavior": {
+                "strictSSL": false,
+                "followRedirects": true
+            }
+        },
+        {
+            "name": "18. Endpoint pembuatan pesanan",
+            "description": "",
+            "event": [],
+            "auth": {},
+            "request": {
+                "auth": {},
+                "method": "POST",
+                "body": {
+                    "mode": "raw",
+                    "raw": "{\r\n  \"customer_id\": 1,\r\n  \"machine_id\": 1,\r\n  \"order_number\": \"ORD-TEST-ANGEL-001\",\r\n  \"total_price\": 15000,\r\n  \"status\": \"pending\"\r\n}",
+                    "options": {
+                        "raw": {
+                            "language": "json"
+                        }
+                    }
+                },
+                "header": [],
+                "url": {
+                    "raw": "http://127.0.0.1:8000/api/v1/orders",
+                    "path": [
+                        "api",
+                        "v1",
+                        "orders"
+                    ],
+                    "host": [
+                        "127",
+                        "0",
+                        "0",
+                        "1"
+                    ],
+                    "protocol": "http",
+                    "port": "8000",
+                    "query": [],
+                    "variable": []
+                }
+            },
+            "response": [],
+            "protocolProfileBehavior": {
+                "strictSSL": false,
+                "followRedirects": true
+            }
+        },
+        {
+            "name": "19. Tambah  Item Makanan",
+            "description": "",
+            "event": [],
+            "auth": {},
+            "request": {
+                "auth": {},
+                "method": "POST",
+                "body": {
+                    "mode": "raw",
+                    "raw": "{\r\n  \"product_id\": 1,\r\n  \"quantity\": 1\r\n}",
+                    "options": {
+                        "raw": {
+                            "language": "json"
+                        }
+                    }
+                },
+                "header": [],
+                "url": {
+                    "raw": "http://127.0.0.1:8000/api/v1/orders/1/items",
+                    "path": [
+                        "api",
+                        "v1",
+                        "orders",
+                        "1",
+                        "items"
+                    ],
+                    "host": [
+                        "127",
+                        "0",
+                        "0",
+                        "1"
+                    ],
+                    "protocol": "http",
+                    "port": "8000",
+                    "query": [],
+                    "variable": []
+                }
+            },
+            "response": [],
+            "protocolProfileBehavior": {
+                "strictSSL": false,
+                "followRedirects": true
+            }
+        },
+        {
+            "name": "20. Update Order Status",
+            "description": "",
+            "event": [],
+            "auth": {},
+            "request": {
+                "auth": {},
+                "method": "PUT",
+                "body": {
+                    "mode": "raw",
+                    "raw": "{\r\n  \"status\": \"completed\"\r\n}",
+                    "options": {
+                        "raw": {
+                            "language": "json"
+                        }
+                    }
+                },
+                "header": [],
+                "url": {
+                    "raw": "http://127.0.0.1:8000/api/v1/orders/1",
+                    "path": [
+                        "api",
+                        "v1",
+                        "orders",
+                        "1"
+                    ],
+                    "host": [
+                        "127",
+                        "0",
+                        "0",
+                        "1"
+                    ],
+                    "protocol": "http",
+                    "port": "8000",
+                    "query": [],
+                    "variable": []
+                }
+            },
+            "response": [],
+            "protocolProfileBehavior": {
+                "strictSSL": false,
+                "followRedirects": true
+            }
+        },
+        {
+            "name": "21. Get Daftar Produk",
+            "description": "",
+            "event": [],
+            "auth": {},
+            "request": {
+                "auth": {},
+                "method": "GET",
+                "body": {},
+                "header": [],
+                "url": {
+                    "raw": "http://127.0.0.1:8000/api/v1/products",
+                    "path": [
+                        "api",
+                        "v1",
+                        "products"
+                    ],
+                    "host": [
+                        "127",
+                        "0",
+                        "0",
+                        "1"
+                    ],
+                    "protocol": "http",
+                    "port": "8000",
+                    "query": [],
+                    "variable": []
+                }
+            },
+            "response": [],
+            "protocolProfileBehavior": {
+                "strictSSL": false,
+                "followRedirects": true
+            }
+        },
+        {
+            "name": "1. Auth Login",
+            "description": "",
+            "event": [],
+            "auth": {},
+            "request": {
+                "auth": {},
+                "method": "POST",
+                "body": {
+                    "mode": "raw",
+                    "raw": "{\r\n  \"email\": \"admin@vending.test\",\r\n  \"password\": \"password\"\r\n}",
+                    "options": {
+                        "raw": {
+                            "language": "json"
+                        }
+                    }
+                },
+                "header": [],
+                "url": {
+                    "raw": "{{baseUrl}}/api/v1/auth/login",
+                    "path": [
+                        "api",
+                        "v1",
+                        "auth",
+                        "login"
+                    ],
+                    "host": [
+                        "{{baseUrl}}"
+                    ],
+                    "query": [],
+                    "variable": []
+                }
+            },
+            "response": [
+                {
+                    "name": "1. Auth Login",
+                    "originalRequest": {
+                        "method": "POST",
+                        "header": [],
+                        "url": {
+                            "raw": "{{baseUrl}}/api/v1/auth/login",
+                            "path": [
+                                "api",
+                                "v1",
+                                "auth",
+                                "login"
+                            ],
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "query": [],
+                            "variable": []
+                        },
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\r\n  \"email\": \"admin@vending.test\",\r\n  \"password\": \"password\"\r\n}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        }
+                    },
+                    "cookie": [],
+                    "status": "OK",
+                    "code": 200,
+                    "_postman_previewlanguage": "json",
+                    "header": [
+                        {
+                            "key": "host",
+                            "value": "127.0.0.1:8000"
+                        },
+                        {
+                            "key": "connection",
+                            "value": "close"
+                        },
+                        {
+                            "key": "x-powered-by",
+                            "value": "PHP/8.5.8"
+                        },
+                        {
+                            "key": "cache-control",
+                            "value": "no-cache, private"
+                        },
+                        {
+                            "key": "date",
+                            "value": "Sun, 11 Oct 2026 17:34:55 GMT"
+                        },
+                        {
+                            "key": "content-type",
+                            "value": "application/json"
+                        },
+                        {
+                            "key": "access-control-allow-origin",
+                            "value": "*"
+                        }
+                    ],
+                    "body": "{\n  \"success\": true,\n  \"message\": \"Login berhasil\",\n  \"access_token\": \"1|MCEIEL3sh5oHRHPgPA6y43OvJyASCTnh7gfHyqxXec1a7fe1\",\n  \"token_type\": \"Bearer\",\n  \"user\": {\n    \"id\": 1,\n    \"name\": \"Admin Vending\",\n    \"email\": \"admin@vending.test\",\n    \"role\": \"customer\"\n  }\n}"
+                }
+            ],
+            "protocolProfileBehavior": {
+                "strictSSL": false,
+                "followRedirects": true
+            }
+        },
+        {
+            "name": "2. Products",
+            "description": "",
+            "event": [],
+            "auth": {},
+            "request": {
+                "auth": {},
+                "method": "GET",
+                "body": {},
+                "header": [],
+                "url": {
+                    "raw": "{{baseUrl}}/api/v1/products",
+                    "path": [
+                        "api",
+                        "v1",
+                        "products"
+                    ],
+                    "host": [
+                        "{{baseUrl}}"
+                    ],
+                    "query": [],
+                    "variable": []
+                }
+            },
+            "response": [
+                {
+                    "name": "2. Products",
+                    "originalRequest": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "{{baseUrl}}/api/v1/products",
+                            "path": [
+                                "api",
+                                "v1",
+                                "products"
+                            ],
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "query": [],
+                            "variable": []
+                        },
+                        "body": {}
+                    },
+                    "cookie": [],
+                    "status": "OK",
+                    "code": 200,
+                    "_postman_previewlanguage": "json",
+                    "header": [
+                        {
+                            "key": "host",
+                            "value": "127.0.0.1:8000"
+                        },
+                        {
+                            "key": "connection",
+                            "value": "close"
+                        },
+                        {
+                            "key": "x-powered-by",
+                            "value": "PHP/8.5.8"
+                        },
+                        {
+                            "key": "cache-control",
+                            "value": "no-cache, private"
+                        },
+                        {
+                            "key": "date",
+                            "value": "Sun, 11 Oct 2026 17:32:07 GMT"
+                        },
+                        {
+                            "key": "content-type",
+                            "value": "application/json"
+                        },
+                        {
+                            "key": "access-control-allow-origin",
+                            "value": "*"
+                        }
+                    ],
+                    "body": "{\n  \"success\": true,\n  \"message\": \"Daftar katalog produk\",\n  \"data\": [\n    {\n      \"id\": 1,\n      \"category_id\": 1,\n      \"name\": \"Mie Tarempa Original\",\n      \"description\": \"Mie Tarempa Original hangat siap disajikan\",\n      \"price\": \"12000.00\",\n      \"image\": null,\n      \"is_available\": true,\n      \"created_at\": \"2026-10-11T17:31:26.000000Z\",\n      \"updated_at\": \"2026-10-11T17:31:26.000000Z\"\n    },\n    {\n      \"id\": 2,\n      \"category_id\": 1,\n      \"name\": \"Mie Tarempa Ayam\",\n      \"description\": \"Mie Tarempa Ayam hangat siap disajikan\",\n      \"price\": \"15000.00\",\n      \"image\": null,\n      \"is_available\": true,\n      \"created_at\": \"2026-10-11T17:31:26.000000Z\",\n      \"updated_at\": \"2026-10-11T17:31:26.000000Z\"\n    },\n    {\n      \"id\": 3,\n      \"category_id\": 2,\n      \"name\": \"Luti Gendang Cokelat\",\n      \"description\": \"Luti Gendang dengan isian cokelat\",\n      \"price\": \"10000.00\",\n      \"image\": null,\n      \"is_available\": true,\n      \"created_at\": \"2026-10-11T17:31:26.000000Z\",\n      \"updated_at\": \"2026-10-11T17:31:26.000000Z\"\n    },\n    {\n      \"id\": 4,\n      \"category_id\": 2,\n      \"name\": \"Luti Gendang Abon\",\n      \"description\": \"Luti Gendang dengan isian abon\",\n      \"price\": \"10000.00\",\n      \"image\": null,\n      \"is_available\": true,\n      \"created_at\": \"2026-10-11T17:31:26.000000Z\",\n      \"updated_at\": \"2026-10-11T17:31:26.000000Z\"\n    }\n  ]\n}"
+                }
+            ],
+            "protocolProfileBehavior": {
+                "strictSSL": false,
+                "followRedirects": true
+            }
+        },
+        {
+            "name": "3. Inventory",
+            "description": "",
+            "event": [],
+            "auth": {},
+            "request": {
+                "auth": {},
+                "method": "GET",
+                "body": {},
+                "header": [],
+                "url": {
+                    "raw": "{{baseUrl}}/api/inventories",
+                    "path": [
+                        "api",
+                        "inventories"
+                    ],
+                    "host": [
+                        "{{baseUrl}}"
+                    ],
+                    "query": [],
+                    "variable": []
+                }
+            },
+            "response": [
+                {
+                    "name": "3. Inventory",
+                    "originalRequest": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "{{baseUrl}}/api/inventories",
+                            "path": [
+                                "api",
+                                "inventories"
+                            ],
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "query": [],
+                            "variable": []
+                        },
+                        "body": {}
+                    },
+                    "cookie": [],
+                    "status": "OK",
+                    "code": 200,
+                    "_postman_previewlanguage": "json",
+                    "header": [
+                        {
+                            "key": "host",
+                            "value": "127.0.0.1:8000"
+                        },
+                        {
+                            "key": "connection",
+                            "value": "close"
+                        },
+                        {
+                            "key": "x-powered-by",
+                            "value": "PHP/8.5.8"
+                        },
+                        {
+                            "key": "cache-control",
+                            "value": "no-cache, private"
+                        },
+                        {
+                            "key": "date",
+                            "value": "Sun, 11 Oct 2026 17:39:55 GMT"
+                        },
+                        {
+                            "key": "content-type",
+                            "value": "application/json"
+                        },
+                        {
+                            "key": "access-control-allow-origin",
+                            "value": "*"
+                        }
+                    ],
+                    "body": "{\n  \"success\": true,\n  \"message\": \"Daftar inventory berhasil diambil.\",\n  \"data\": [\n    {\n      \"id\": 1,\n      \"machine_id\": 1,\n      \"product_id\": 1,\n      \"quantity\": 10,\n      \"minimum_stock\": 2,\n      \"maximum_stock\": 10,\n      \"last_restocked_at\": \"2026-10-11T17:31:26.000000Z\",\n      \"created_at\": \"2026-10-11T17:31:26.000000Z\",\n      \"updated_at\": \"2026-10-11T17:31:26.000000Z\",\n      \"machine\": {\n        \"id\": 1,\n        \"name\": \"Vending Machine Kampus A\",\n        \"location\": \"Gedung A - Lantai 1\",\n        \"ip_address\": \"192.168.1.101\",\n        \"status\": \"active\",\n        \"created_at\": \"2026-10-11T17:31:26.000000Z\",\n        \"updated_at\": \"2026-10-11T17:31:26.000000Z\"\n      },\n      \"product\": {\n        \"id\": 1,\n        \"category_id\": 1,\n        \"name\": \"Mie Tarempa Original\",\n        \"description\": \"Mie Tarempa Original hangat siap disajikan\",\n        \"price\": \"12000.00\",\n        \"image\": null,\n        \"is_available\": true,\n        \"created_at\": \"2026-10-11T17:31:26.000000Z\",\n        \"updated_at\": \"2026-10-11T17:31:26.000000Z\"\n      }\n    },\n    {\n      \"id\": 2,\n      \"machine_id\": 1,\n      \"product_id\": 2,\n      \"quantity\": 10,\n      \"minimum_stock\": 2,\n      \"maximum_stock\": 10,\n      \"last_restocked_at\": \"2026-10-11T17:31:26.000000Z\",\n      \"created_at\": \"2026-10-11T17:31:26.000000Z\",\n      \"updated_at\": \"2026-10-11T17:31:26.000000Z\",\n      \"machine\": {\n        \"id\": 1,\n        \"name\": \"Vending Machine Kampus A\",\n        \"location\": \"Gedung A - Lantai 1\",\n        \"ip_address\": \"192.168.1.101\",\n        \"status\": \"active\",\n        \"created_at\": \"2026-10-11T17:31:26.000000Z\",\n        \"updated_at\": \"2026-10-11T17:31:26.000000Z\"\n      },\n      \"product\": {\n        \"id\": 2,\n        \"category_id\": 1,\n        \"name\": \"Mie Tarempa Ayam\",\n        \"description\": \"Mie Tarempa Ayam hangat siap disajikan\",\n        \"price\": \"15000.00\",\n        \"image\": null,\n        \"is_available\": true,\n        \"created_at\": \"2026-10-11T17:31:26.000000Z\",\n        \"updated_at\": \"2026-10-11T17:31:26.000000Z\"\n      }\n    },\n    {\n      \"id\": 3,\n      \"machine_id\": 1,\n      \"product_id\": 3,\n      \"quantity\": 10,\n      \"minimum_stock\": 2,\n      \"maximum_stock\": 10,\n      \"last_restocked_at\": \"2026-10-11T17:31:26.000000Z\",\n      \"created_at\": \"2026-10-11T17:31:26.000000Z\",\n      \"updated_at\": \"2026-10-11T17:31:26.000000Z\",\n      \"machine\": {\n        \"id\": 1,\n        \"name\": \"Vending Machine Kampus A\",\n        \"location\": \"Gedung A - Lantai 1\",\n        \"ip_address\": \"192.168.1.101\",\n        \"status\": \"active\",\n        \"created_at\": \"2026-10-11T17:31:26.000000Z\",\n        \"updated_at\": \"2026-10-11T17:31:26.000000Z\"\n      },\n      \"product\": {\n        \"id\": 3,\n        \"category_id\": 2,\n        \"name\": \"Luti Gendang Cokelat\",\n        \"description\": \"Luti Gendang dengan isian cokelat\",\n        \"price\": \"10000.00\",\n        \"image\": null,\n        \"is_available\": true,\n        \"created_at\": \"2026-10-11T17:31:26.000000Z\",\n        \"updated_at\": \"2026-10-11T17:31:26.000000Z\"\n      }\n    },\n    {\n      \"id\": 4,\n      \"machine_id\": 1,\n      \"product_id\": 4,\n      \"quantity\": 10,\n      \"minimum_stock\": 2,\n      \"maximum_stock\": 10,\n      \"last_restocked_at\": \"2026-10-11T17:31:26.000000Z\",\n      \"created_at\": \"2026-10-11T17:31:26.000000Z\",\n      \"updated_at\": \"2026-10-11T17:31:26.000000Z\",\n      \"machine\": {\n        \"id\": 1,\n        \"name\": \"Vending Machine Kampus A\",\n        \"location\": \"Gedung A - Lantai 1\",\n        \"ip_address\": \"192.168.1.101\",\n        \"status\": \"active\",\n        \"created_at\": \"2026-10-11T17:31:26.000000Z\",\n        \"updated_at\": \"2026-10-11T17:31:26.000000Z\"\n      },\n      \"product\": {\n        \"id\": 4,\n        \"category_id\": 2,\n        \"name\": \"Luti Gendang Abon\",\n        \"description\": \"Luti Gendang dengan isian abon\",\n        \"price\": \"10000.00\",\n        \"image\": null,\n        \"is_available\": true,\n        \"created_at\": \"2026-10-11T17:31:26.000000Z\",\n        \"updated_at\": \"2026-10-11T17:31:26.000000Z\"\n      }\n    },\n    {\n      \"id\": 5,\n      \"machine_id\": 2,\n      \"product_id\": 1,\n      \"quantity\": 10,\n      \"minimum_stock\": 2,\n      \"maximum_stock\": 10,\n      \"last_restocked_at\": \"2026-10-11T17:31:26.000000Z\",\n      \"created_at\": \"2026-10-11T17:31:26.000000Z\",\n      \"updated_at\": \"2026-10-11T17:31:26.000000Z\",\n      \"machine\": {\n        \"id\": 2,\n        \"name\": \"Vending Machine Kampus B\",\n        \"location\": \"Gedung B - Lantai 1\",\n        \"ip_address\": \"192.168.1.102\",\n        \"status\": \"active\",\n        \"created_at\": \"2026-10-11T17:31:26.000000Z\",\n        \"updated_at\": \"2026-10-11T17:31:26.000000Z\"\n      },\n      \"product\": {\n        \"id\": 1,\n        \"category_id\": 1,\n        \"name\": \"Mie Tarempa Original\",\n        \"description\": \"Mie Tarempa Original hangat siap disajikan\",\n        \"price\": \"12000.00\",\n        \"image\": null,\n        \"is_available\": true,\n        \"created_at\": \"2026-10-11T17:31:26.000000Z\",\n        \"updated_at\": \"2026-10-11T17:31:26.000000Z\"\n      }\n    },\n    {\n      \"id\": 6,\n      \"machine_id\": 2,\n      \"product_id\": 2,\n      \"quantity\": 10,\n      \"minimum_stock\": 2,\n      \"maximum_stock\": 10,\n      \"last_restocked_at\": \"2026-10-11T17:31:26.000000Z\",\n      \"created_at\": \"2026-10-11T17:31:26.000000Z\",\n      \"updated_at\": \"2026-10-11T17:31:26.000000Z\",\n      \"machine\": {\n        \"id\": 2,\n        \"name\": \"Vending Machine Kampus B\",\n        \"location\": \"Gedung B - Lantai 1\",\n        \"ip_address\": \"192.168.1.102\",\n        \"status\": \"active\",\n        \"created_at\": \"2026-10-11T17:31:26.000000Z\",\n        \"updated_at\": \"2026-10-11T17:31:26.000000Z\"\n      },\n      \"product\": {\n        \"id\": 2,\n        \"category_id\": 1,\n        \"name\": \"Mie Tarempa Ayam\",\n        \"description\": \"Mie Tarempa Ayam hangat siap disajikan\",\n        \"price\": \"15000.00\",\n        \"image\": null,\n        \"is_available\": true,\n        \"created_at\": \"2026-10-11T17:31:26.000000Z\",\n        \"updated_at\": \"2026-10-11T17:31:26.000000Z\"\n      }\n    },\n    {\n      \"id\": 7,\n      \"machine_id\": 2,\n      \"product_id\": 3,\n      \"quantity\": 10,\n      \"minimum_stock\": 2,\n      \"maximum_stock\": 10,\n      \"last_restocked_at\": \"2026-10-11T17:31:26.000000Z\",\n      \"created_at\": \"2026-10-11T17:31:26.000000Z\",\n      \"updated_at\": \"2026-10-11T17:31:26.000000Z\",\n      \"machine\": {\n        \"id\": 2,\n        \"name\": \"Vending Machine Kampus B\",\n        \"location\": \"Gedung B - Lantai 1\",\n        \"ip_address\": \"192.168.1.102\",\n        \"status\": \"active\",\n        \"created_at\": \"2026-10-11T17:31:26.000000Z\",\n        \"updated_at\": \"2026-10-11T17:31:26.000000Z\"\n      },\n      \"product\": {\n        \"id\": 3,\n        \"category_id\": 2,\n        \"name\": \"Luti Gendang Cokelat\",\n        \"description\": \"Luti Gendang dengan isian cokelat\",\n        \"price\": \"10000.00\",\n        \"image\": null,\n        \"is_available\": true,\n        \"created_at\": \"2026-10-11T17:31:26.000000Z\",\n        \"updated_at\": \"2026-10-11T17:31:26.000000Z\"\n      }\n    },\n    {\n      \"id\": 8,\n      \"machine_id\": 2,\n      \"product_id\": 4,\n      \"quantity\": 10,\n      \"minimum_stock\": 2,\n      \"maximum_stock\": 10,\n      \"last_restocked_at\": \"2026-10-11T17:31:26.000000Z\",\n      \"created_at\": \"2026-10-11T17:31:26.000000Z\",\n      \"updated_at\": \"2026-10-11T17:31:26.000000Z\",\n      \"machine\": {\n        \"id\": 2,\n        \"name\": \"Vending Machine Kampus B\",\n        \"location\": \"Gedung B - Lantai 1\",\n        \"ip_address\": \"192.168.1.102\",\n        \"status\": \"active\",\n        \"created_at\": \"2026-10-11T17:31:26.000000Z\",\n        \"updated_at\": \"2026-10-11T17:31:26.000000Z\"\n      },\n      \"product\": {\n        \"id\": 4,\n        \"category_id\": 2,\n        \"name\": \"Luti Gendang Abon\",\n        \"description\": \"Luti Gendang dengan isian abon\",\n        \"price\": \"10000.00\",\n        \"image\": null,\n        \"is_available\": true,\n        \"created_at\": \"2026-10-11T17:31:26.000000Z\",\n        \"updated_at\": \"2026-10-11T17:31:26.000000Z\"\n      }\n    }\n  ]\n}"
+                }
+            ],
+            "protocolProfileBehavior": {
+                "strictSSL": false,
+                "followRedirects": true
+            }
+        },
+        {
+            "name": "4. Create Order",
+            "description": "",
+            "event": [],
+            "auth": {},
+            "request": {
+                "auth": {},
+                "method": "POST",
+                "body": {
+                    "mode": "raw",
+                    "raw": "{\r\n  \"customer_id\": 1,\r\n  \"machine_id\": 1,\r\n  \"order_number\": \"ORD-KEPRI-TEST-001\",\r\n  \"total_price\": 15000,\r\n  \"status\": \"pending\"\r\n}",
+                    "options": {
+                        "raw": {
+                            "language": "json"
+                        }
+                    }
+                },
+                "header": [],
+                "url": {
+                    "raw": "{{baseUrl}}/api/v1/orders",
+                    "path": [
+                        "api",
+                        "v1",
+                        "orders"
+                    ],
+                    "host": [
+                        "{{baseUrl}}"
+                    ],
+                    "query": [],
+                    "variable": []
+                }
+            },
+            "response": [
+                {
+                    "name": "4. Create Order",
+                    "originalRequest": {
+                        "method": "POST",
+                        "header": [],
+                        "url": {
+                            "raw": "{{baseUrl}}/api/v1/orders",
+                            "path": [
+                                "api",
+                                "v1",
+                                "orders"
+                            ],
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "query": [],
+                            "variable": []
+                        },
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\r\n  \"machine_id\": 1,\r\n  \"slot_code\": \"A1\",\r\n  \"quantity\": 2,\r\n  \"total_price\": 20000\r\n}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        }
+                    },
+                    "cookie": [],
+                    "status": "Created",
+                    "code": 201,
+                    "_postman_previewlanguage": "json",
+                    "header": [
+                        {
+                            "key": "host",
+                            "value": "127.0.0.1:8000"
+                        },
+                        {
+                            "key": "connection",
+                            "value": "close"
+                        },
+                        {
+                            "key": "x-powered-by",
+                            "value": "PHP/8.5.8"
+                        },
+                        {
+                            "key": "cache-control",
+                            "value": "no-cache, private"
+                        },
+                        {
+                            "key": "date",
+                            "value": "Sun, 11 Oct 2026 17:43:36 GMT"
+                        },
+                        {
+                            "key": "content-type",
+                            "value": "application/json"
+                        },
+                        {
+                            "key": "access-control-allow-origin",
+                            "value": "*"
+                        }
+                    ],
+                    "body": "{\n  \"success\": true,\n  \"message\": \"Order berhasil dibuat dan stok telah di-hold.\",\n  \"data\": {\n    \"customer_id\": 1,\n    \"machine_id\": 1,\n    \"order_number\": \"ORD-1791740616-949\",\n    \"total_price\": \"20000.00\",\n    \"status\": \"pending\",\n    \"updated_at\": \"2026-10-11T17:43:36.000000Z\",\n    \"created_at\": \"2026-10-11T17:43:36.000000Z\",\n    \"id\": 1,\n    \"customer\": {\n      \"id\": 1,\n      \"user_id\": 3,\n      \"name\": \"Customer Vending\",\n      \"email\": \"customer@vending.test\",\n      \"phone\": \"081234567890\",\n      \"address\": \"Batam, Kepulauan Riau\",\n      \"created_at\": \"2026-10-11T17:31:26.000000Z\",\n      \"updated_at\": \"2026-10-11T17:31:26.000000Z\"\n    },\n    \"machine\": {\n      \"id\": 1,\n      \"name\": \"Vending Machine Kampus A\",\n      \"location\": \"Gedung A - Lantai 1\",\n      \"ip_address\": \"192.168.1.101\",\n      \"status\": \"active\",\n      \"created_at\": \"2026-10-11T17:31:26.000000Z\",\n      \"updated_at\": \"2026-10-11T17:31:26.000000Z\"\n    },\n    \"order_items\": [\n      {\n        \"id\": 1,\n        \"order_id\": 1,\n        \"product_id\": 1,\n        \"quantity\": 2,\n        \"price\": \"12000.00\",\n        \"subtotal\": \"20000.00\",\n        \"created_at\": \"2026-10-11T17:43:36.000000Z\",\n        \"updated_at\": \"2026-10-11T17:43:36.000000Z\",\n        \"product\": {\n          \"id\": 1,\n          \"category_id\": 1,\n          \"name\": \"Mie Tarempa Original\",\n          \"description\": \"Mie Tarempa Original hangat siap disajikan\",\n          \"price\": \"12000.00\",\n          \"image\": null,\n          \"is_available\": true,\n          \"created_at\": \"2026-10-11T17:31:26.000000Z\",\n          \"updated_at\": \"2026-10-11T17:31:26.000000Z\"\n        }\n      }\n    ],\n    \"payments\": []\n  }\n}"
+                }
+            ],
+            "protocolProfileBehavior": {
+                "strictSSL": false,
+                "followRedirects": true
+            }
+        },
+        {
+            "name": "5. Simulate Payment",
+            "description": "",
+            "event": [],
+            "auth": {},
+            "request": {
+                "auth": {},
+                "method": "POST",
+                "body": {
+                    "mode": "raw",
+                    "raw": "{\r\n  \"payment_method\": \"qris\",\r\n  \"amount\": 20000\r\n}",
+                    "options": {
+                        "raw": {
+                            "language": "json"
+                        }
+                    }
+                },
+                "header": [],
+                "url": {
+                    "raw": "{{baseUrl}}/api/v1/orders/1/payments",
+                    "path": [
+                        "api",
+                        "v1",
+                        "orders",
+                        "1",
+                        "payments"
+                    ],
+                    "host": [
+                        "{{baseUrl}}"
+                    ],
+                    "query": [],
+                    "variable": []
+                }
+            },
+            "response": [
+                {
+                    "name": "5. Simulate Payment",
+                    "originalRequest": {
+                        "method": "POST",
+                        "header": [],
+                        "url": {
+                            "raw": "{{baseUrl}}/api/v1/orders/1/payments",
+                            "path": [
+                                "api",
+                                "v1",
+                                "orders",
+                                "1",
+                                "payments"
+                            ],
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "query": [],
+                            "variable": []
+                        },
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\r\n  \"payment_method\": \"qris\",\r\n  \"amount\": 20000\r\n}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        }
+                    },
+                    "cookie": [],
+                    "status": "Created",
+                    "code": 201,
+                    "_postman_previewlanguage": "json",
+                    "header": [
+                        {
+                            "key": "host",
+                            "value": "127.0.0.1:8000"
+                        },
+                        {
+                            "key": "connection",
+                            "value": "close"
+                        },
+                        {
+                            "key": "x-powered-by",
+                            "value": "PHP/8.5.8"
+                        },
+                        {
+                            "key": "cache-control",
+                            "value": "no-cache, private"
+                        },
+                        {
+                            "key": "date",
+                            "value": "Sun, 11 Oct 2026 17:43:51 GMT"
+                        },
+                        {
+                            "key": "content-type",
+                            "value": "application/json"
+                        },
+                        {
+                            "key": "access-control-allow-origin",
+                            "value": "*"
+                        }
+                    ],
+                    "body": "{\n  \"success\": true,\n  \"message\": \"Pembayaran berhasil dibuat.\",\n  \"data\": {\n    \"payment_method\": \"qris\",\n    \"amount\": \"20000.00\",\n    \"payment_status\": \"paid\",\n    \"transaction_id\": \"PAY-0001\",\n    \"paid_at\": \"2026-10-11T17:43:51.000000Z\",\n    \"order_id\": 1,\n    \"updated_at\": \"2026-10-11T17:43:51.000000Z\",\n    \"created_at\": \"2026-10-11T17:43:51.000000Z\",\n    \"id\": 1\n  }\n}"
+                }
+            ],
+            "protocolProfileBehavior": {
+                "strictSSL": false,
+                "followRedirects": true
+            }
+        },
+        {
+            "name": "6. Get Order Detail",
+            "description": "",
+            "event": [],
+            "auth": {},
+            "request": {
+                "auth": {},
+                "method": "GET",
+                "body": {},
+                "header": [],
+                "url": {
+                    "raw": "{{baseUrl}}/api/v1/orders/1",
+                    "path": [
+                        "api",
+                        "v1",
+                        "orders",
+                        "1"
+                    ],
+                    "host": [
+                        "{{baseUrl}}"
+                    ],
+                    "query": [],
+                    "variable": []
+                }
+            },
+            "response": [
+                {
+                    "name": "6. Get Order Detail",
+                    "originalRequest": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "{{baseUrl}}/api/v1/orders/1",
+                            "path": [
+                                "api",
+                                "v1",
+                                "orders",
+                                "1"
+                            ],
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "query": [],
+                            "variable": []
+                        },
+                        "body": {}
+                    },
+                    "cookie": [],
+                    "status": "OK",
+                    "code": 200,
+                    "_postman_previewlanguage": "json",
+                    "header": [
+                        {
+                            "key": "host",
+                            "value": "127.0.0.1:8000"
+                        },
+                        {
+                            "key": "connection",
+                            "value": "close"
+                        },
+                        {
+                            "key": "x-powered-by",
+                            "value": "PHP/8.5.8"
+                        },
+                        {
+                            "key": "cache-control",
+                            "value": "no-cache, private"
+                        },
+                        {
+                            "key": "date",
+                            "value": "Sun, 11 Oct 2026 17:44:04 GMT"
+                        },
+                        {
+                            "key": "content-type",
+                            "value": "application/json"
+                        },
+                        {
+                            "key": "access-control-allow-origin",
+                            "value": "*"
+                        }
+                    ],
+                    "body": "{\n  \"success\": true,\n  \"message\": \"Detail order berhasil diambil.\",\n  \"data\": {\n    \"id\": 1,\n    \"customer_id\": 1,\n    \"machine_id\": 1,\n    \"order_number\": \"ORD-1791740616-949\",\n    \"total_price\": \"20000.00\",\n    \"status\": \"pending\",\n    \"created_at\": \"2026-10-11T17:43:36.000000Z\",\n    \"updated_at\": \"2026-10-11T17:43:36.000000Z\",\n    \"customer\": {\n      \"id\": 1,\n      \"user_id\": 3,\n      \"name\": \"Customer Vending\",\n      \"email\": \"customer@vending.test\",\n      \"phone\": \"081234567890\",\n      \"address\": \"Batam, Kepulauan Riau\",\n      \"created_at\": \"2026-10-11T17:31:26.000000Z\",\n      \"updated_at\": \"2026-10-11T17:31:26.000000Z\"\n    },\n    \"machine\": {\n      \"id\": 1,\n      \"name\": \"Vending Machine Kampus A\",\n      \"location\": \"Gedung A - Lantai 1\",\n      \"ip_address\": \"192.168.1.101\",\n      \"status\": \"active\",\n      \"created_at\": \"2026-10-11T17:31:26.000000Z\",\n      \"updated_at\": \"2026-10-11T17:31:26.000000Z\"\n    },\n    \"order_items\": [\n      {\n        \"id\": 1,\n        \"order_id\": 1,\n        \"product_id\": 1,\n        \"quantity\": 2,\n        \"price\": \"12000.00\",\n        \"subtotal\": \"20000.00\",\n        \"created_at\": \"2026-10-11T17:43:36.000000Z\",\n        \"updated_at\": \"2026-10-11T17:43:36.000000Z\",\n        \"product\": {\n          \"id\": 1,\n          \"category_id\": 1,\n          \"name\": \"Mie Tarempa Original\",\n          \"description\": \"Mie Tarempa Original hangat siap disajikan\",\n          \"price\": \"12000.00\",\n          \"image\": null,\n          \"is_available\": true,\n          \"created_at\": \"2026-10-11T17:31:26.000000Z\",\n          \"updated_at\": \"2026-10-11T17:31:26.000000Z\"\n        }\n      }\n    ],\n    \"payments\": [\n      {\n        \"id\": 1,\n        \"order_id\": 1,\n        \"payment_method\": \"qris\",\n        \"amount\": \"20000.00\",\n        \"payment_status\": \"paid\",\n        \"transaction_id\": \"PAY-0001\",\n        \"paid_at\": \"2026-10-11T17:43:51.000000Z\",\n        \"created_at\": \"2026-10-11T17:43:51.000000Z\",\n        \"updated_at\": \"2026-10-11T17:43:51.000000Z\"\n      }\n    ]\n  }\n}"
+                }
+            ],
+            "protocolProfileBehavior": {
+                "strictSSL": false,
+                "followRedirects": true
+            }
+        },
+        {
+            "name": "7. Confirm Dispense",
+            "description": "",
+            "event": [],
+            "auth": {},
+            "request": {
+                "auth": {},
+                "method": "POST",
+                "body": {
+                    "mode": "raw",
+                    "raw": "{\r\n  \"machine_id\": 1,\r\n  \"slot_code\": \"A1\",\r\n  \"quantity\": 1\r\n}",
+                    "options": {
+                        "raw": {
+                            "language": "json"
+                        }
+                    }
+                },
+                "header": [],
+                "url": {
+                    "raw": "{{baseUrl}}/api/v1/payments/1/confirm-dispense",
+                    "path": [
+                        "api",
+                        "v1",
+                        "payments",
+                        "1",
+                        "confirm-dispense"
+                    ],
+                    "host": [
+                        "{{baseUrl}}"
+                    ],
+                    "query": [],
+                    "variable": []
+                }
+            },
+            "response": [
+                {
+                    "name": "7. Confirm Dispense",
+                    "originalRequest": {
+                        "method": "POST",
+                        "header": [],
+                        "url": {
+                            "raw": "{{baseUrl}}/api/v1/payments/1/confirm-dispense",
+                            "path": [
+                                "api",
+                                "v1",
+                                "payments",
+                                "1",
+                                "confirm-dispense"
+                            ],
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "query": [],
+                            "variable": []
+                        },
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\r\n  \"machine_id\": 1,\r\n  \"slot_code\": \"A1\",\r\n  \"quantity\": 1\r\n}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        }
+                    },
+                    "cookie": [],
+                    "status": "OK",
+                    "code": 200,
+                    "_postman_previewlanguage": "json",
+                    "header": [
+                        {
+                            "key": "host",
+                            "value": "127.0.0.1:8000"
+                        },
+                        {
+                            "key": "connection",
+                            "value": "close"
+                        },
+                        {
+                            "key": "x-powered-by",
+                            "value": "PHP/8.5.8"
+                        },
+                        {
+                            "key": "cache-control",
+                            "value": "no-cache, private"
+                        },
+                        {
+                            "key": "date",
+                            "value": "Sun, 11 Oct 2026 17:53:25 GMT"
+                        },
+                        {
+                            "key": "content-type",
+                            "value": "application/json"
+                        },
+                        {
+                            "key": "access-control-allow-origin",
+                            "value": "*"
+                        }
+                    ],
+                    "body": "{\n  \"success\": true,\n  \"message\": \"Dispense dikonfirmasi, stok fisik berhasil dipotong\",\n  \"data\": {\n    \"payment_id\": 1,\n    \"remaining_current_qty\": 9,\n    \"remaining_hold_qty\": 1\n  }\n}"
+                }
+            ],
+            "protocolProfileBehavior": {
+                "strictSSL": false,
+                "followRedirects": true
+            }
+        }
+    ],
+    "variable": [],
+    "event": [],
+    "auth": {}
+}
