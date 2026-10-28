@@ -1,5 +1,8 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { getTransaksi } from '../api';
+import { hitungKpi } from '../kpi';
+import { useAutoRefresh } from '../useAutoRefresh';
+import InfoPembaruan from '../components/InfoPembaruan';
 
 const LABEL_STATUS = { sukses: 'Sukses', gagal: 'Gagal', refund: 'Refund' };
 const WARNA_STATUS = {
@@ -20,20 +23,14 @@ function BadgeSimulasi() {
 }
 
 function Transaksi() {
-  const [transaksi, setTransaksi] = useState([]);
+  // Data diperbarui otomatis (useAutoRefresh), KPI ikut berubah tanpa refresh halaman
+  const { data: transaksi, error, terakhir } = useAutoRefresh(getTransaksi);
   const [filterTanggal, setFilterTanggal] = useState('');
   const [filterStatus, setFilterStatus] = useState('semua');
   const [filterMesin, setFilterMesin] = useState('semua');
   const [filterMetode, setFilterMetode] = useState('semua');
   const [filterData, setFilterData] = useState('semua'); // semua | asli | simulasi
   const [detail, setDetail] = useState(null);
-  const [error, setError] = useState('');
-
-  useEffect(() => {
-    getTransaksi()
-      .then(setTransaksi)
-      .catch((err) => setError(err.message));
-  }, []);
 
   const formatRupiah = (angka) => 'Rp' + angka.toLocaleString('id-ID');
 
@@ -55,13 +52,8 @@ function Transaksi() {
   // Definisi KPI sama dengan Dashboard Revenue:
   // Total Transaksi = sukses + gagal (refund tidak dihitung)
   // Revenue = total sukses - total refund
-  const jumlahTransaksi = transaksiTampil.filter((t) => t.status !== 'refund').length;
+  const { totalTransaksi: jumlahTransaksi, revenue: total } = hitungKpi(transaksiTampil);
   const jumlahRefund = transaksiTampil.filter((t) => t.status === 'refund').length;
-  const total = transaksiTampil.reduce((sum, t) => {
-    if (t.status === 'sukses') return sum + t.harga;
-    if (t.status === 'refund') return sum - t.harga;
-    return sum;
-  }, 0);
 
   const adaFilter =
     filterTanggal ||
@@ -85,6 +77,10 @@ function Transaksi() {
           Gagal memuat transaksi: {error}
         </p>
       )}
+
+      <div className="flex justify-end">
+        <InfoPembaruan terakhir={terakhir} />
+      </div>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
         <div className="bg-white rounded-2xl p-5 shadow-sm border border-sky-100 flex items-center gap-4">

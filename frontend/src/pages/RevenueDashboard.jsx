@@ -1,37 +1,44 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
 import Chart from 'chart.js/auto';
 import { getTransaksi } from '../api';
+import { hitungKpi, nilaiRevenue } from '../kpi';
+import { useAutoRefresh } from '../useAutoRefresh';
+import InfoPembaruan from '../components/InfoPembaruan';
 
 const formatRupiah = (angka) => 'Rp' + Math.round(angka).toLocaleString('id-ID');
 const csvCell = (v) => `"${String(v).replace(/"/g, '""')}"`;
 const inputClass =
-  'px-3.5 py-2.5 border border-sky-200 rounded-lg text-sm bg-white focus:outline-none focus:border-blue-500';
+  'px-3.5 py-2.5 border border-slate-200 rounded-lg text-sm bg-white focus:outline-none focus:border-emerald-500';
 
 // 'YYYY-MM-DD' -> Date lokal (bukan UTC)
 const parseTanggal = (str) => new Date(`${str}T00:00:00`);
 
-// Ringkasan sesuai definisi KPI:
-// Revenue = sukses - refund | Total Transaksi = sukses + gagal | Success Rate = sukses / (sukses + gagal)
-function hitungKpi(list) {
-  const sukses = list.filter((t) => t.status === 'sukses');
-  const gagal = list.filter((t) => t.status === 'gagal');
-  const refund = list.filter((t) => t.status === 'refund');
-  const kotor = sukses.reduce((sum, t) => sum + t.harga, 0);
-  const totalRefund = refund.reduce((sum, t) => sum + t.harga, 0);
-  const totalTransaksi = sukses.length + gagal.length;
-  return {
-    sukses,
-    revenue: kotor - totalRefund,
-    totalRefund,
-    totalTransaksi,
-    aov: sukses.length ? kotor / sukses.length : 0,
-    successRate: totalTransaksi ? (sukses.length / totalTransaksi) * 100 : 0,
-  };
+const WARNA_METODE = ['#10b981', '#3b82f6', '#f59e0b', '#ef4444'];
+
+// Persentase per metode dengan 1 desimal yang dijamin berjumlah tepat 100,0%
+// (metode "sisa terbesar": sisa pembulatan dibagikan ke yang pecahannya paling besar)
+function hitungPersen(hitungan) {
+  const total = Object.values(hitungan).reduce((a, b) => a + b, 0);
+  if (total === 0) return {};
+  const entri = Object.entries(hitungan).map(([nama, jumlah]) => {
+    const mentah = (jumlah / total) * 1000; // dalam persepuluh persen
+    return { nama, nilai: Math.floor(mentah), sisa: mentah - Math.floor(mentah) };
+  });
+  let kurang = 1000 - entri.reduce((a, e) => a + e.nilai, 0);
+  [...entri]
+    .sort((a, b) => b.sisa - a.sisa)
+    .forEach((e) => {
+      if (kurang > 0) {
+        e.nilai += 1;
+        kurang -= 1;
+      }
+    });
+  return Object.fromEntries(entri.map((e) => [e.nama, e.nilai / 10]));
 }
 
 function RevenueDashboard() {
-  const [transaksi, setTransaksi] = useState([]);
-  const [error, setError] = useState('');
+  // Data diperbarui otomatis (useAutoRefresh), KPI ikut berubah tanpa refresh halaman
+  const { data: transaksi, error, terakhir } = useAutoRefresh(getTransaksi);
   const [dari, setDari] = useState('');
   const [sampai, setSampai] = useState('');
   const [filterStatus, setFilterStatus] = useState('semua');
@@ -42,12 +49,6 @@ function RevenueDashboard() {
   const trendChart = useRef(null);
   const payRef = useRef(null);
   const payChart = useRef(null);
-
-  useEffect(() => {
-    getTransaksi()
-      .then(setTransaksi)
-      .catch((err) => setError(err.message));
-  }, []);
 
   const daftarMetode = useMemo(() => [...new Set(transaksi.map((t) => t.metode))], [transaksi]);
 
@@ -80,13 +81,28 @@ function RevenueDashboard() {
   // Revenue per tanggal: sukses ditambah, refund dikurangi
   const revenuePerTanggal = {};
   data.forEach((t) => {
-    if (t.status === 'sukses') revenuePerTanggal[t.tanggal] = (revenuePerTanggal[t.tanggal] || 0) + t.harga;
-    if (t.status === 'refund') revenuePerTanggal[t.tanggal] = (revenuePerTanggal[t.tanggal] || 0) - t.harga;
+    const nilai = nilaiRevenue(t);
+    if (nilai !== 0) revenuePerTanggal[t.tanggal] = (revenuePerTanggal[t.tanggal] || 0) + nilai;
   });
   const tanggalList = Object.keys(revenuePerTanggal).sort();
 
   const metodeCount = {};
   sukses.forEach((t) => { metodeCount[t.metode] = (metodeCount[t.metode] || 0) + 1; });
+  const persenMetode = hitungPersen(metodeCount);
+  const totalMetode = Object.values(metodeCount).reduce((a, b) => a + b, 0);
+
+  // KPI per mesin: hitungKpi() dijalankan pada tiap kelompok mesin (mengikuti filter yang aktif)
+  const kpiPerMesin = Object.entries(
+    data.reduce((acc, t) => {
+      (acc[t.mesin] = acc[t.mesin] || []).push(t);
+      return acc;
+    }, {})
+  )
+    .map(([nama, list]) => ({ nama, ...hitungKpi(list) }))
+    .sort((a, b) => b.revenue - a.revenue);
+
+  // Mesin terlaris = transaksi sukses terbanyak (imbang: revenue lebih besar)
+  const terlarisMesin = [...kpiPerMesin].sort((a, b) => b.sukses.length - a.sukses.length || b.revenue - a.revenue)[0];
 
   // Perbandingan 7 hari terakhir vs 7 hari sebelumnya (tidak terpengaruh filter tanggal)
   const hariIni = new Date();
@@ -115,8 +131,8 @@ function RevenueDashboard() {
         datasets: [{
           label: 'Revenue',
           data: tanggalList.map((d) => revenuePerTanggal[d]),
-          borderColor: '#0ea5e9',
-          backgroundColor: 'rgba(14,165,233,0.1)',
+          borderColor: '#10b981',
+          backgroundColor: 'rgba(16,185,129,0.1)',
           tension: 0.25, fill: true, borderWidth: 2.5,
         }],
       },
@@ -140,9 +156,19 @@ function RevenueDashboard() {
       type: 'doughnut',
       data: {
         labels,
-        datasets: [{ data: labels.map((l) => metodeCount[l]), backgroundColor: ['#0ea5e9', '#2563eb', '#06b6d4', '#818cf8'] }],
+        datasets: [{ data: labels.map((l) => metodeCount[l]), backgroundColor: WARNA_METODE }],
       },
-      options: { responsive: true, plugins: { legend: { position: 'bottom', labels: { boxWidth: 12, font: { size: 11 } } } } },
+      options: {
+        responsive: true,
+        plugins: {
+          legend: { display: false },
+          tooltip: {
+            callbacks: {
+              label: (ctx) => `${ctx.label}: ${ctx.parsed} transaksi (${persenMetode[ctx.label].toFixed(1)}%)`,
+            },
+          },
+        },
+      },
     });
     return () => payChart.current?.destroy();
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -194,12 +220,15 @@ function RevenueDashboard() {
         <div>
           <h2 className="text-lg font-bold text-slate-900">Dashboard Revenue &amp; Performa</h2>
           <p className="text-sm text-slate-400">Rekap performa bisnis dari seluruh mesin</p>
+          <div className="mt-1">
+            <InfoPembaruan terakhir={terakhir} />
+          </div>
         </div>
         <div className="flex gap-2 print:hidden">
-          <button onClick={exportCSV} className="px-4 py-2 bg-white border border-sky-200 rounded-lg text-sm font-semibold text-slate-600 hover:bg-sky-50">
+          <button onClick={exportCSV} className="px-4 py-2 bg-white border border-slate-200 rounded-lg text-sm font-semibold text-slate-600 hover:bg-slate-50">
             ⬇️ Export CSV
           </button>
-          <button onClick={exportPDF} className="px-4 py-2 bg-gradient-to-br from-sky-400 to-blue-500 text-white rounded-lg text-sm font-semibold shadow hover:opacity-90">
+          <button onClick={exportPDF} className="px-4 py-2 bg-gradient-to-br from-emerald-400 to-emerald-600 text-white rounded-lg text-sm font-semibold shadow hover:opacity-90">
             🖨️ Export PDF
           </button>
         </div>
@@ -209,7 +238,7 @@ function RevenueDashboard() {
         <p className="bg-red-50 text-red-500 text-sm px-4 py-3 rounded-lg">Gagal memuat data: {error}</p>
       )}
 
-      <div className="bg-white rounded-2xl shadow-sm border border-sky-100 p-4 flex flex-wrap items-center gap-3 print:hidden">
+      <div className="bg-white rounded-2xl shadow-sm border border-slate-100 p-4 flex flex-wrap items-center gap-3 print:hidden">
         <label className="flex items-center gap-2 text-sm text-slate-500">
           Dari
           <input type="date" value={dari} max={sampai || undefined} onChange={(e) => setDari(e.target.value)} className={inputClass} />
@@ -231,12 +260,7 @@ function RevenueDashboard() {
           ))}
         </select>
         <label className="flex items-center gap-2 text-sm text-slate-500">
-          <input
-            type="checkbox"
-            checked={sertakanSimulasi}
-            onChange={(e) => setSertakanSimulasi(e.target.checked)}
-            className="accent-blue-600"
-          />
+          <input type="checkbox" checked={sertakanSimulasi} onChange={(e) => setSertakanSimulasi(e.target.checked)} />
           Sertakan data simulasi
         </label>
         {adaFilter && (
@@ -250,7 +274,7 @@ function RevenueDashboard() {
         {kpis.map((k) => (
           <div
             key={k.label}
-            className={`bg-white rounded-2xl p-4 shadow-sm border ${k.dashed ? 'border-dashed border-sky-300' : 'border-sky-100'}`}
+            className={`bg-white rounded-2xl p-4 shadow-sm border ${k.dashed ? 'border-dashed border-slate-300' : 'border-slate-100'}`}
           >
             <p className="text-lg mb-1">{k.icon}</p>
             <p className="text-xs text-slate-500 font-medium">{k.label}</p>
@@ -260,19 +284,41 @@ function RevenueDashboard() {
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-        <div className="lg:col-span-2 bg-white rounded-2xl shadow-sm border border-sky-100 p-6">
+        <div className="lg:col-span-2 bg-white rounded-2xl shadow-sm border border-slate-100 p-6">
           <h3 className="font-bold text-slate-900 mb-4">Tren Revenue Harian</h3>
           {tanggalList.length === 0 && <p className="text-sm text-slate-400">Tidak ada data untuk filter ini</p>}
           <canvas ref={trendRef} height="110"></canvas>
         </div>
-        <div className="bg-white rounded-2xl shadow-sm border border-sky-100 p-6">
-          <h3 className="font-bold text-slate-900 mb-4">Breakdown Metode Pembayaran</h3>
+        <div className="bg-white rounded-2xl shadow-sm border border-slate-100 p-6">
+          <h3 className="font-bold text-slate-900 mb-1">Breakdown Metode Pembayaran</h3>
+          <p className="text-xs text-slate-400 mb-4">Dari transaksi sukses</p>
           {Object.keys(metodeCount).length === 0 && <p className="text-sm text-slate-400">Tidak ada data untuk filter ini</p>}
           <canvas ref={payRef}></canvas>
+          {totalMetode > 0 && (
+            <table className="w-full text-sm mt-4" data-testid="breakdown-metode">
+              <tbody>
+                {Object.keys(metodeCount).map((m, i) => (
+                  <tr key={m} className="border-t border-slate-100">
+                    <td className="py-2">
+                      <span className="inline-block w-2.5 h-2.5 rounded-full mr-2" style={{ background: WARNA_METODE[i % WARNA_METODE.length] }}></span>
+                      <span className="font-medium text-slate-700">{m}</span>
+                    </td>
+                    <td className="py-2 text-right text-slate-500">{metodeCount[m]}</td>
+                    <td className="py-2 text-right font-semibold text-slate-800">{persenMetode[m].toFixed(1)}%</td>
+                  </tr>
+                ))}
+                <tr className="border-t-2 border-slate-200">
+                  <td className="py-2 font-bold text-slate-900">Total</td>
+                  <td className="py-2 text-right font-bold text-slate-900">{totalMetode}</td>
+                  <td className="py-2 text-right font-bold text-slate-900">100.0%</td>
+                </tr>
+              </tbody>
+            </table>
+          )}
         </div>
       </div>
 
-      <div className="bg-white rounded-2xl shadow-sm border border-sky-100 p-6">
+      <div className="bg-white rounded-2xl shadow-sm border border-slate-100 p-6">
         <h3 className="font-bold text-slate-900 mb-1">Analisis Jam Sibuk</h3>
         <p className="text-xs text-slate-400 mb-4">Jumlah transaksi sukses per jam operasional</p>
         <div className="flex items-end gap-1.5 h-32">
@@ -283,7 +329,7 @@ function RevenueDashboard() {
             return (
               <div key={jam} className="flex-1 h-full flex flex-col items-center justify-end gap-1" title={`Jam ${jam}:00 — ${jumlah} transaksi`}>
                 <div
-                  className={`w-full rounded-t ${isPuncak ? 'bg-blue-500' : jumlah > 0 ? 'bg-sky-200' : 'bg-slate-100'}`}
+                  className={`w-full rounded-t ${isPuncak ? 'bg-emerald-500' : jumlah > 0 ? 'bg-emerald-200' : 'bg-slate-100'}`}
                   style={{ height: `${tinggi}%` }}
                 ></div>
                 <span className="text-[9px] text-slate-400">{jam}</span>
@@ -293,7 +339,54 @@ function RevenueDashboard() {
         </div>
       </div>
 
-      <div className="bg-white rounded-2xl shadow-sm border border-sky-100 p-6">
+      <div className="bg-white rounded-2xl shadow-sm border border-slate-100 p-6">
+        <h3 className="font-bold text-slate-900 mb-1">KPI per Mesin</h3>
+        <p className="text-xs text-slate-400 mb-4">Performa bisnis tiap mesin, mengikuti filter di atas</p>
+        {kpiPerMesin.length === 0 ? (
+          <p className="text-sm text-slate-400">Tidak ada data untuk filter ini</p>
+        ) : (
+          <div className="overflow-x-auto">
+            <table className="w-full text-sm">
+              <thead>
+                <tr className="text-slate-400 text-left">
+                  <th className="py-2 font-medium">Mesin</th>
+                  <th className="py-2 font-medium text-right">Transaksi</th>
+                  <th className="py-2 font-medium text-right">Terjual</th>
+                  <th className="py-2 font-medium text-right">Revenue</th>
+                  <th className="py-2 font-medium text-right">AOV</th>
+                  <th className="py-2 font-medium pl-6 w-56">Success Rate</th>
+                </tr>
+              </thead>
+              <tbody>
+                {kpiPerMesin.map((m) => (
+                  <tr key={m.nama} className="border-t border-slate-100">
+                    <td className="py-3 font-semibold text-slate-800">
+                      {m.nama}
+                      {terlarisMesin && terlarisMesin.sukses.length > 0 && m.nama === terlarisMesin.nama && (
+                        <span className="ml-2 text-[10px] font-bold px-2 py-0.5 rounded-full bg-amber-50 text-amber-600">🏆 Terlaris</span>
+                      )}
+                    </td>
+                    <td className="py-3 text-right text-slate-600">{m.totalTransaksi}</td>
+                    <td className="py-3 text-right text-slate-600">{m.sukses.length}</td>
+                    <td className="py-3 text-right font-bold text-emerald-600">{formatRupiah(m.revenue)}</td>
+                    <td className="py-3 text-right text-slate-600">{formatRupiah(m.aov)}</td>
+                    <td className="py-3 pl-6">
+                      <div className="flex items-center gap-3">
+                        <div className="flex-1 h-2 rounded-full bg-slate-100 overflow-hidden">
+                          <div className="h-full rounded-full bg-emerald-500" style={{ width: `${m.successRate}%` }}></div>
+                        </div>
+                        <span className="w-12 text-right font-semibold text-slate-700">{m.successRate.toFixed(1)}%</span>
+                      </div>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        )}
+      </div>
+
+      <div className="bg-white rounded-2xl shadow-sm border border-slate-100 p-6">
         <div className="flex justify-between items-center mb-4">
           <div>
             <h3 className="font-bold text-slate-900">Perbandingan Performa</h3>
@@ -313,9 +406,9 @@ function RevenueDashboard() {
           </thead>
           <tbody>
             {perbandingan.map((row) => (
-              <tr key={row.label} className="border-t border-sky-100">
+              <tr key={row.label} className="border-t border-slate-100">
                 <td className="py-3 font-semibold text-slate-800">{row.label}</td>
-                <td className="py-3 text-right text-blue-600 font-bold">{row.ini}</td>
+                <td className="py-3 text-right text-emerald-600 font-bold">{row.ini}</td>
                 <td className="py-3 text-right text-slate-400">{row.lalu}</td>
               </tr>
             ))}

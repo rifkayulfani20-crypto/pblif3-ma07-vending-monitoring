@@ -1,7 +1,28 @@
 {
   "produk": [
-    { "id": 1, "nama": "Ayam Geprek", "kategori": "Makanan Berat", "harga": 15000 },
-    { "id": 2, "nama": "Nasi Goreng", "kategori": "Makanan Berat", "harga": 18000 },
-    { "id": 3, "nama": "Mie Instan", "kategori": "Makanan Ringan", "harga": 10000 }
+    {
+      "id": 1,
+      "nama": "Mie Tarempa Original",
+      "kategori": "Kategori 1",
+      "harga": 12000
+    },
+    {
+      "id": 2,
+      "nama": "Mie Tarempa Ayam",
+      "kategori": "Kategori 1",
+      "harga": 15000
+    },
+    {
+      "id": 3,
+      "nama": "Luti Gendang Cokelat",
+      "kategori": "Kategori 2",
+      "harga": 10000
+    },
+    {
+      "id": 4,
+      "nama": "Luti Gendang Abon",
+      "kategori": "Kategori 2",
+      "harga": 10000
+    }
   ]
 }

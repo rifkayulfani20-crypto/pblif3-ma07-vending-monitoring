@@ -90,7 +90,7 @@ function MesinIlustrasi() {
 
       {/* panel kanan */}
       <rect x="188" y="58" width="40" height="30" rx="6" fill="#1e3a5f" />
-      <text x="208" y="78" textAnchor="middle" fontSize="12" fontWeight="700" fill="#67e8f9" fontFamily="monospace">72°C</text>
+      <text x="208" y="77" textAnchor="middle" fontSize="10" fontWeight="700" fill="#67e8f9" fontFamily="monospace">OPEN</text>
       <rect x="190" y="100" width="36" height="8" rx="3" fill="#e0f2fe" />
       <rect x="190" y="116" width="36" height="8" rx="3" fill="#e0f2fe" />
       <rect x="190" y="132" width="36" height="8" rx="3" fill="#e0f2fe" />
@@ -149,14 +149,10 @@ function DashboardPreview() {
         <div className="flex items-center gap-4 rounded-xl border border-sky-100 p-3">
           <svg viewBox="0 0 36 36" className="w-14 h-14 -rotate-90" aria-hidden="true">
             <circle cx="18" cy="18" r="14" fill="none" stroke="#e0f2fe" strokeWidth="6" />
-            <circle cx="18" cy="18" r="14" fill="none" stroke="#38bdf8" strokeWidth="6" strokeDasharray="45 100" />
-            <circle cx="18" cy="18" r="14" fill="none" stroke="#60a5fa" strokeWidth="6" strokeDasharray="28 100" strokeDashoffset="-45" />
-            <circle cx="18" cy="18" r="14" fill="none" stroke="#a5b4fc" strokeWidth="6" strokeDasharray="15 100" strokeDashoffset="-73" />
+            <circle cx="18" cy="18" r="14" fill="none" stroke="#38bdf8" strokeWidth="6" strokeDasharray="100 100" />
           </svg>
           <div className="space-y-1.5 text-[11px] text-slate-500">
             <p className="flex items-center gap-2"><span className="w-2 h-2 rounded-full bg-sky-400"></span>QRIS</p>
-            <p className="flex items-center gap-2"><span className="w-2 h-2 rounded-full bg-blue-400"></span>E-Wallet</p>
-            <p className="flex items-center gap-2"><span className="w-2 h-2 rounded-full bg-indigo-300"></span>Tunai</p>
           </div>
         </div>
       </div>

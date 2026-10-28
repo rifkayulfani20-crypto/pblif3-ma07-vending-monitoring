@@ -1,6 +1,10 @@
-// Satu-satunya tempat alamat API. Saat PC9 siap, ganti lewat frontend/.env:
-// VITE_API_URL=http://alamat-pc9:PORT
+// Satu-satunya tempat alamat API.
+// - BASE_URL        : server MA07 sendiri (login, mesin, produk). Default http://localhost:3000
+// - ORDERS_BASE_URL : server order milik PC9. Isi lewat frontend/.env:
+//                       VITE_ORDERS_URL=http://localhost:4000
+//                     Kalau tidak diisi, order diambil dari server MA07 (data mock lama).
 export const BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:3000';
+export const ORDERS_BASE_URL = import.meta.env.VITE_ORDERS_URL || BASE_URL;
 const ORDERS_PATH = '/api/v1/orders';
 
 const pad = (n) => String(n).padStart(2, '0');
@@ -37,9 +41,9 @@ export function normalisasiOrder(o) {
 }
 
 // Fungsi umum: ambil JSON dari backend, sertakan token jika ada
-async function ambilJSON(path, pesanGagal) {
+async function ambilJSON(path, pesanGagal, base = BASE_URL) {
   const token = sessionStorage.getItem('token');
-  const res = await fetch(BASE_URL + path, {
+  const res = await fetch(base + path, {
     headers: token ? { Authorization: `Bearer ${token}` } : {},
   });
   if (!res.ok) throw new Error(`${pesanGagal} (${res.status})`);
@@ -47,7 +51,7 @@ async function ambilJSON(path, pesanGagal) {
 }
 
 export async function getTransaksi() {
-  const json = await ambilJSON(ORDERS_PATH, 'Gagal mengambil order');
+  const json = await ambilJSON(ORDERS_PATH, 'Gagal mengambil order', ORDERS_BASE_URL);
   const list = Array.isArray(json) ? json : json.data || [];
   return list.map(normalisasiOrder);
 }
@@ -60,9 +64,4 @@ export async function getMesin() {
 export async function getProduk() {
   const json = await ambilJSON('/api/produk', 'Gagal mengambil data produk');
   return json.produk || [];
-}
-
-export async function getSuhuLog() {
-  const json = await ambilJSON('/api/suhu-log', 'Gagal mengambil log suhu');
-  return json.log || [];
 }

@@ -1,6 +1,9 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef } from 'react';
 import Chart from 'chart.js/auto';
 import { getTransaksi, getMesin, tanggalLokal } from '../api';
+import { hitungKpi, nilaiRevenue, peringkatMesin } from '../kpi';
+import { useAutoRefresh } from '../useAutoRefresh';
+import InfoPembaruan from '../components/InfoPembaruan';
 
 const NAMA_HARI = ['Min', 'Sen', 'Sel', 'Rab', 'Kam', 'Jum', 'Sab'];
 
@@ -32,41 +35,32 @@ function siapkanDataMingguan(transaksi) {
   }
 
   transaksi.forEach((t) => {
-    if (t.status !== 'sukses') return;
+    const nilai = nilaiRevenue(t);
+    if (nilai === 0) return;
     const target = hari.find((h) => h.tanggal === t.tanggal);
-    if (target) target.total += t.harga;
+    if (target) target.total += nilai;
   });
 
   return hari;
 }
 
-// Ringkasan satu hari: jumlah, sukses, revenue, success rate
+// Ringkasan satu hari memakai rumus KPI bersama (kpi.js), sama dengan halaman lain
 function ringkasHari(transaksi, tanggal) {
-  const data = transaksi.filter((t) => t.tanggal === tanggal);
-  const sukses = data.filter((t) => t.status === 'sukses');
+  const kpi = hitungKpi(transaksi.filter((t) => t.tanggal === tanggal));
   return {
-    jumlah: data.length,
-    revenue: sukses.reduce((sum, t) => sum + t.harga, 0),
-    rate: data.length ? (sukses.length / data.length) * 100 : null,
+    jumlah: kpi.totalTransaksi,
+    revenue: kpi.revenue,
+    rate: kpi.totalTransaksi ? kpi.successRate : null,
   };
 }
 
 function Dashboard() {
-  const [mesin, setMesin] = useState([]);
-  const [transaksi, setTransaksi] = useState([]);
-  const [error, setError] = useState('');
+  // Data diperbarui otomatis (useAutoRefresh), KPI ikut berubah tanpa refresh halaman
+  const { data: mesin, error: errorMesin } = useAutoRefresh(getMesin);
+  const { data: transaksi, error: errorTransaksi, terakhir } = useAutoRefresh(getTransaksi);
+  const error = errorTransaksi || errorMesin;
   const canvasRef = useRef(null);
   const chartRef = useRef(null);
-
-  useEffect(() => {
-    getMesin()
-      .then(setMesin)
-      .catch((err) => setError(err.message));
-
-    getTransaksi()
-      .then(setTransaksi)
-      .catch((err) => setError(err.message));
-  }, []);
 
   const ini = ringkasHari(transaksi, tanggalOffset(0));
   const kemarin = ringkasHari(transaksi, tanggalOffset(1));
@@ -131,6 +125,12 @@ function Dashboard() {
 
   const dataMingguan = siapkanDataMingguan(transaksi);
 
+  // Mesin terlaris: urut berdasarkan jumlah transaksi sukses
+  const peringkat = peringkatMesin(transaksi, mesin.map((m) => m.nama));
+  const terlaris = peringkat[0];
+  const adaPenjualan = Boolean(terlaris) && terlaris.terjual > 0;
+  const maksTerjual = adaPenjualan ? terlaris.terjual : 1;
+
   useEffect(() => {
     if (transaksi.length === 0) return undefined;
 
@@ -175,9 +175,12 @@ function Dashboard() {
 
   return (
     <>
-      <p className="text-sm text-slate-500 -mt-4 mb-6">
-        Ringkasan performa bisnis hari ini &amp; tren penjualan 7 hari terakhir.
-      </p>
+      <div className="-mt-4 mb-6 flex flex-wrap items-center justify-between gap-2">
+        <p className="text-sm text-slate-500">
+          Ringkasan performa bisnis hari ini &amp; tren penjualan 7 hari terakhir.
+        </p>
+        <InfoPembaruan terakhir={terakhir} />
+      </div>
 
       {error && (
         <p className="bg-red-50 text-red-500 text-sm px-4 py-3 rounded-lg mb-6">
@@ -217,6 +220,48 @@ function Dashboard() {
           <div className="h-72">
             <canvas ref={canvasRef}></canvas>
           </div>
+        </div>
+      </section>
+
+      <section className="bg-white rounded-2xl shadow-sm border border-sky-100 overflow-hidden mb-7">
+        <div className="bg-gradient-to-r from-sky-500 to-blue-600 px-6 py-4 flex items-center gap-3">
+          <span className="flex items-center justify-center w-9 h-9 rounded-lg bg-white/20 text-lg">🏆</span>
+          <div>
+            <h2 className="text-white font-bold">Mesin Terlaris</h2>
+            <p className="text-sky-50 text-xs">Berdasarkan jumlah transaksi sukses</p>
+          </div>
+        </div>
+        <div className="p-6">
+          {adaPenjualan ? (
+            <>
+              <p className="text-sm text-slate-500">Mesin paling laris saat ini</p>
+              <p className="text-2xl font-bold text-blue-600">{terlaris.nama}</p>
+              <p className="text-sm text-slate-500 mb-5">
+                {terlaris.terjual} terjual · {formatRupiah(terlaris.revenue)}
+              </p>
+              <div className="space-y-3">
+                {peringkat.map((m, i) => (
+                  <div key={m.nama}>
+                    <div className="flex justify-between text-sm mb-1">
+                      <span className="font-medium text-slate-700">
+                        {i === 0 ? '🏆 ' : `${i + 1}. `}
+                        {m.nama}
+                      </span>
+                      <span className="text-slate-500">{m.terjual} terjual</span>
+                    </div>
+                    <div className="h-2 rounded-full bg-sky-50 overflow-hidden">
+                      <div
+                        className={`h-full rounded-full ${i === 0 ? 'bg-blue-500' : 'bg-sky-300'}`}
+                        style={{ width: `${(m.terjual / maksTerjual) * 100}%` }}
+                      ></div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </>
+          ) : (
+            <p className="text-sm text-slate-400">Belum ada transaksi sukses</p>
+          )}
         </div>
       </section>
 

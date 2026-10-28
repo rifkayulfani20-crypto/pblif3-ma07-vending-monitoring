@@ -1,31 +1,23 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { getTransaksi, getMesin, tanggalLokal } from '../api';
+import { hitungKpi } from '../kpi';
+import { useAutoRefresh } from '../useAutoRefresh';
+import InfoPembaruan from '../components/InfoPembaruan';
 
 const csvCell = (v) => `"${String(v).replace(/"/g, '""')}"`;
 
 function Laporan() {
-  const [mesin, setMesin] = useState([]);
-  const [transaksi, setTransaksi] = useState([]);
+  // Data diperbarui otomatis (useAutoRefresh), ringkasan ikut berubah tanpa refresh halaman
+  const { data: mesin, error: errorMesin } = useAutoRefresh(getMesin);
+  const { data: transaksi, error: errorTransaksi, terakhir } = useAutoRefresh(getTransaksi);
+  const error = errorTransaksi || errorMesin;
   const [sertakanSimulasi, setSertakanSimulasi] = useState(true);
-  const [error, setError] = useState('');
-
-  useEffect(() => {
-    getMesin()
-      .then(setMesin)
-      .catch((err) => setError(err.message));
-
-    getTransaksi()
-      .then(setTransaksi)
-      .catch((err) => setError(err.message));
-  }, []);
 
   const formatRupiah = (angka) => 'Rp' + angka.toLocaleString('id-ID');
 
   const dataTampil = sertakanSimulasi ? transaksi : transaksi.filter((t) => !t.simulasi);
-  const sukses = dataTampil.filter((t) => t.status === 'sukses');
-
-  const totalPendapatan = sukses.reduce((sum, t) => sum + t.harga, 0);
-  const successRate = dataTampil.length ? (sukses.length / dataTampil.length) * 100 : 0;
+  // Rumus KPI bersama (kpi.js), sama dengan Dashboard, Transaksi, dan Revenue
+  const { sukses, revenue: totalRevenue, totalTransaksi, successRate } = hitungKpi(dataTampil);
   const mesinAktif = mesin.filter((m) => m.status === 'aktif').length;
 
   const produkTerlaris = {};
@@ -37,8 +29,8 @@ function Laporan() {
   const ringkasan = [
     { label: 'Total Mesin', value: mesin.length, icon: '🖥️' },
     { label: 'Mesin Aktif', value: `${mesinAktif} / ${mesin.length}`, icon: '🟢' },
-    { label: 'Total Transaksi', value: dataTampil.length, icon: '🧾' },
-    { label: 'Total Pendapatan (sukses)', value: formatRupiah(totalPendapatan), icon: '💰' },
+    { label: 'Total Transaksi', value: totalTransaksi, icon: '🧾' },
+    { label: 'Total Revenue (sukses - refund)', value: formatRupiah(totalRevenue), icon: '💰' },
     { label: 'Success Rate', value: successRate.toFixed(1) + '%', icon: '✅' },
     { label: 'Produk Terlaris', value: terlaris ? `${terlaris[0]} (${terlaris[1]}x)` : '-', icon: '🏆' },
   ];
@@ -87,7 +79,11 @@ function Laporan() {
         </p>
       )}
 
-      <label className="flex items-center gap-2 px-6 pt-5 text-sm text-slate-500 print:hidden">
+      <div className="px-6 pt-5 print:hidden">
+        <InfoPembaruan terakhir={terakhir} />
+      </div>
+
+      <label className="flex items-center gap-2 px-6 pt-3 text-sm text-slate-500 print:hidden">
         <input
           type="checkbox"
           checked={sertakanSimulasi}

@@ -1,21 +1,21 @@
 {
   "transaksi": [
-    { "id": 1, "mesin": "Mesin 1 - Ayam Geprek", "produk": "Ayam Geprek", "harga": 15000, "hariKe": 6, "jam": 10, "metode": "QRIS", "status": "sukses" },
-    { "id": 2, "mesin": "Mesin 2 - Nasi Goreng", "produk": "Nasi Goreng", "harga": 18000, "hariKe": 6, "jam": 10, "metode": "E-Wallet", "status": "sukses" },
-    { "id": 3, "mesin": "Mesin 1 - Ayam Geprek", "produk": "Ayam Geprek", "harga": 15000, "hariKe": 5, "jam": 9, "metode": "QRIS", "status": "sukses" },
-    { "id": 4, "mesin": "Mesin 3 - Mie Instan", "produk": "Mie Instan", "harga": 10000, "hariKe": 5, "jam": 9, "metode": "Tunai", "status": "gagal" },
-    { "id": 5, "mesin": "Mesin 2 - Nasi Goreng", "produk": "Nasi Goreng", "harga": 18000, "hariKe": 4, "jam": 12, "metode": "E-Wallet", "status": "sukses" },
-    { "id": 6, "mesin": "Mesin 1 - Ayam Geprek", "produk": "Ayam Geprek", "harga": 15000, "hariKe": 4, "jam": 12, "metode": "QRIS", "status": "sukses" },
-    { "id": 7, "mesin": "Mesin 2 - Nasi Goreng", "produk": "Nasi Goreng", "harga": 18000, "hariKe": 3, "jam": 13, "metode": "QRIS", "status": "sukses" },
-    { "id": 8, "mesin": "Mesin 3 - Mie Instan", "produk": "Mie Instan", "harga": 10000, "hariKe": 3, "jam": 8, "metode": "E-Wallet", "status": "sukses" },
-    { "id": 9, "mesin": "Mesin 1 - Ayam Geprek", "produk": "Ayam Geprek", "harga": 15000, "hariKe": 2, "jam": 12, "metode": "Tunai", "status": "sukses" },
-    { "id": 10, "mesin": "Mesin 2 - Nasi Goreng", "produk": "Nasi Goreng", "harga": 18000, "hariKe": 2, "jam": 12, "metode": "QRIS", "status": "sukses" },
-    { "id": 11, "mesin": "Mesin 3 - Mie Instan", "produk": "Mie Instan", "harga": 10000, "hariKe": 1, "jam": 17, "metode": "E-Wallet", "status": "sukses" },
-    { "id": 12, "mesin": "Mesin 1 - Ayam Geprek", "produk": "Ayam Geprek", "harga": 15000, "hariKe": 1, "jam": 12, "metode": "QRIS", "status": "gagal" },
-    { "id": 13, "mesin": "Mesin 2 - Nasi Goreng", "produk": "Nasi Goreng", "harga": 18000, "hariKe": 0, "jam": 9, "metode": "Tunai", "status": "sukses" },
-    { "id": 14, "mesin": "Mesin 1 - Ayam Geprek", "produk": "Ayam Geprek", "harga": 15000, "hariKe": 0, "jam": 12, "metode": "QRIS", "status": "sukses" },
-    { "id": 15, "mesin": "Mesin 3 - Mie Instan", "produk": "Mie Instan", "harga": 10000, "hariKe": 0, "jam": 15, "metode": "E-Wallet", "status": "sukses" },
-    { "id": 16, "mesin": "Mesin 1 - Ayam Geprek", "produk": "Ayam Geprek", "harga": 15000, "hariKe": 2, "jam": 13, "metode": "QRIS", "status": "refund" },
-    { "id": 17, "mesin": "Mesin 2 - Nasi Goreng", "produk": "Nasi Goreng", "harga": 18000, "hariKe": 0, "jam": 12, "metode": "E-Wallet", "status": "refund" }
+    { "id": 1, "mesin": "Gedung Utama Lantai 1", "produk": "Mie Tarempa Original", "harga": 12000, "hariKe": 6, "jam": 10, "metode": "QRIS", "status": "sukses" },
+    { "id": 2, "mesin": "Gedung RTF Lantai 1", "produk": "Mie Tarempa Ayam", "harga": 15000, "hariKe": 6, "jam": 10, "metode": "QRIS", "status": "sukses" },
+    { "id": 3, "mesin": "Gedung TA Lantai 1", "produk": "Mie Tarempa Ayam", "harga": 15000, "hariKe": 5, "jam": 9, "metode": "QRIS", "status": "sukses" },
+    { "id": 4, "mesin": "Gedung Elektro Lantai 1", "produk": "Luti Gendang Cokelat", "harga": 10000, "hariKe": 5, "jam": 9, "metode": "QRIS", "status": "gagal" },
+    { "id": 5, "mesin": "Gedung Utama Lantai 1", "produk": "Mie Tarempa Original", "harga": 12000, "hariKe": 4, "jam": 12, "metode": "QRIS", "status": "sukses" },
+    { "id": 6, "mesin": "Gedung RTF Lantai 1", "produk": "Luti Gendang Abon", "harga": 10000, "hariKe": 4, "jam": 12, "metode": "QRIS", "status": "sukses" },
+    { "id": 7, "mesin": "Gedung TA Lantai 1", "produk": "Mie Tarempa Ayam", "harga": 15000, "hariKe": 3, "jam": 13, "metode": "QRIS", "status": "sukses" },
+    { "id": 8, "mesin": "Gedung Elektro Lantai 1", "produk": "Luti Gendang Cokelat", "harga": 10000, "hariKe": 3, "jam": 8, "metode": "QRIS", "status": "sukses" },
+    { "id": 9, "mesin": "Gedung Utama Lantai 1", "produk": "Mie Tarempa Original", "harga": 12000, "hariKe": 2, "jam": 12, "metode": "QRIS", "status": "sukses" },
+    { "id": 10, "mesin": "Gedung RTF Lantai 1", "produk": "Luti Gendang Abon", "harga": 10000, "hariKe": 2, "jam": 12, "metode": "QRIS", "status": "sukses" },
+    { "id": 11, "mesin": "Gedung TA Lantai 1", "produk": "Luti Gendang Cokelat", "harga": 10000, "hariKe": 1, "jam": 17, "metode": "QRIS", "status": "sukses" },
+    { "id": 12, "mesin": "Gedung Elektro Lantai 1", "produk": "Mie Tarempa Ayam", "harga": 15000, "hariKe": 1, "jam": 12, "metode": "QRIS", "status": "gagal" },
+    { "id": 13, "mesin": "Gedung Utama Lantai 1", "produk": "Mie Tarempa Original", "harga": 12000, "hariKe": 0, "jam": 9, "metode": "QRIS", "status": "sukses" },
+    { "id": 14, "mesin": "Gedung RTF Lantai 1", "produk": "Mie Tarempa Ayam", "harga": 15000, "hariKe": 0, "jam": 12, "metode": "QRIS", "status": "sukses" },
+    { "id": 15, "mesin": "Gedung TA Lantai 1", "produk": "Luti Gendang Abon", "harga": 10000, "hariKe": 0, "jam": 15, "metode": "QRIS", "status": "sukses" },
+    { "id": 16, "mesin": "Gedung Elektro Lantai 1", "produk": "Mie Tarempa Ayam", "harga": 15000, "hariKe": 2, "jam": 13, "metode": "QRIS", "status": "refund" },
+    { "id": 17, "mesin": "Gedung Utama Lantai 1", "produk": "Mie Tarempa Original", "harga": 12000, "hariKe": 0, "jam": 12, "metode": "QRIS", "status": "refund" }
   ]
 }

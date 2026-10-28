@@ -1,8 +1,32 @@
 {
   "mesin": [
-    { "id": 1, "kode": "VM-001", "nama": "Mesin 1 - Ayam Geprek", "lokasi": "Gedung HTS", "status": "aktif" },
-    { "id": 2, "kode": "VM-002", "nama": "Mesin 2 - Nasi Goreng", "lokasi": "Tekno Tower A", "status": "aktif" },
-    { "id": 3, "kode": "VM-003", "nama": "Mesin 3 - Mie Instan", "lokasi": "Gedung Utama", "status": "maintenance" },
-    { "id": 4, "kode": "VM-004", "nama": "Mesin 4 - Es Teh", "lokasi": "Gedung Kembar", "status": "nonaktif" }
+    {
+      "id": 1,
+      "kode": "VM-001",
+      "nama": "Gedung Utama Lantai 1",
+      "lokasi": "Gedung Utama - Lantai 1",
+      "status": "aktif"
+    },
+    {
+      "id": 2,
+      "kode": "VM-002",
+      "nama": "Gedung RTF Lantai 1",
+      "lokasi": "Gedung RTF - Lantai 1",
+      "status": "aktif"
+    },
+    {
+      "id": 3,
+      "kode": "VM-003",
+      "nama": "Gedung TA Lantai 1",
+      "lokasi": "Gedung TA - Lantai 1",
+      "status": "aktif"
+    },
+    {
+      "id": 4,
+      "kode": "VM-004",
+      "nama": "Gedung Elektro Lantai 1",
+      "lokasi": "Gedung Elektro - Lantai 1",
+      "status": "aktif"
+    }
   ]
-} 
+}
